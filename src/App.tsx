@@ -28,23 +28,21 @@ function App() {
     const holiday = holidays.find((h) =>
       h.mes === today.month && h.dia > today.day || h.mes > today.month
     );
+    
     if (holiday) {
       const holidayDate = new Date(now.getFullYear(), holiday.mes - 1, holiday.dia);
       const timeDiff = holidayDate.getTime() - now.getTime();
       const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
-      previusHoliday(holiday);
+      previusHoliday(holiday); // function
       setCount(daysRemaining)
       setNextHoliday(holiday);
-      return daysRemaining;
     }
+  }
 
-
-
-    function previusHoliday(holiday: Holiday) {
-      const index = holidays.findIndex((item) => holiday.id === item.id);
-      if (index >= 0) {
-        setPrevHoliday(holidays[index - 1]);
-      }
+  function previusHoliday(holiday: Holiday) {
+    const index = holidays.findIndex((item) => holiday.id === item.id);
+    if (index >= 0) {
+      setPrevHoliday(holidays[index - 1]);
     }
   }
 
